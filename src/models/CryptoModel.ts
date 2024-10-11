@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import {model} from 'mongoose'
 
 const cryptoSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -11,7 +10,12 @@ const cryptoSchema = new mongoose.Schema({
 const Crypto = mongoose.model('Crypto', cryptoSchema);
 
 export default class CryptoModel {
-  static async insertMany(cryptos: any[], p0: { ordered: boolean; }) {
-    return Crypto.insertMany(cryptos);
-  }
+    static async insertMany(cryptos: any[], options: { ordered: boolean }) {
+      return Crypto.insertMany(cryptos, options);
+    }
+
+    static async findPricesByCoin(coin: string, limit: number) {
+        return Crypto.find({ name: coin }).sort({ timestamp: -1 }).limit(limit).exec();
+      }
 }
+

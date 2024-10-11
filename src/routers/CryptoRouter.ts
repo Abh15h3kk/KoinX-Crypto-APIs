@@ -17,8 +17,10 @@ class CryptoRouter {
     
     getRoutes() {
         this.router.get('/fetch',CryptoValidator.validateCryptoIds(), GlobalMiddleware.checkError, CryptoController.fetchCryptoData)
+        this.router.get('/deviation',CryptoValidator.validateDeviation(),GlobalMiddleware.checkError, CryptoController.calculatePriceDeviation)
     }
     postRoutes() {
+        this.router.post('/upload',CryptoValidator.validateCryptoAndUpload(), GlobalMiddleware.checkError, CryptoController.uploadCryptoData)
         
     }
     patchRoutes() {

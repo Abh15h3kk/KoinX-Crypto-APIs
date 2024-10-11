@@ -3,7 +3,6 @@ import * as mongoose from 'mongoose';
 import { getEnvironmentVariables } from './environments/env';
 import * as bodyParser from "body-parser";
 import { Utils } from './utils/Utils';
-import { CryptoValidator } from './validators/CryptoValidator';
 import CryptoRouter from './routers/CryptoRouter';
 
 export class Server {
@@ -26,7 +25,6 @@ public app: express.Application = express()
     }
 
     dotenvConfigs() {
-        //dotenv.config({path: path.resolve(__dirname, '../.env')})
         Utils.dotenvConfigs()
     }
 
